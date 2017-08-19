@@ -81,7 +81,7 @@ static id singleton = nil;
     
     [self updateBackForwardButtonState];
     
-    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
+    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.translateButton, self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
     [self updateStopReloadButtonState];
     self.didLoadOnce = YES;
 }
@@ -792,6 +792,14 @@ static id singleton = nil;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
+}
+
+- (YYTextView *)actionTextView {
+    if (!_actionTextView) {
+        _actionTextView = [[YYTextView alloc] init];
+    }
+    
+    return _actionTextView;
 }
 
 static inline UIBarButtonItem *UIBarButtonWithFixedWidth(CGFloat width)
