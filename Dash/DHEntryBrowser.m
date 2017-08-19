@@ -20,6 +20,9 @@
 #import "DHDBResult.h"
 #import "DHDocsetManager.h"
 
+static NSString *kDHLoadingCell = @"kDHLoadingCell";
+static NSString *kDHBrowserCell = @"DHBrowserCell";
+
 @implementation DHEntryBrowser
 
 - (void)viewDidLoad
@@ -34,8 +37,8 @@
     self.searchController = [DHDBSearchController searchControllerWithDocsets:@[self.docset] typeLimit:self.type viewController:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prepareForURLSearch:) name:DHPrepareForURLSearch object:nil];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"DHBrowserCell" bundle:nil] forCellReuseIdentifier:@"DHBrowserCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"DHLoadingCell" bundle:nil] forCellReuseIdentifier:@"DHLoadingCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DHBrowserCell" bundle:nil] forCellReuseIdentifier:kDHBrowserCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DHLoadingCell" bundle:nil] forCellReuseIdentifier:kDHLoadingCell];
     
     self.tableView.rowHeight = 44;
 
@@ -144,7 +147,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = (self.isLoading || self.isEmpty) ? @"DHLoadingCell" : @"DHBrowserCell";
+    NSString *identifier = (self.isLoading || self.isEmpty) ? kDHLoadingCell : kDHBrowserCell;
     DHBrowserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     if((self.isLoading || self.isEmpty) && indexPath.row == 2)
