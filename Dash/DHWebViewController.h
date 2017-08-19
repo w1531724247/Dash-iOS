@@ -20,12 +20,13 @@
 #import "DHDBResult.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "DHWebProgressView.h"
+#import "InterpreterView.h"
 
 
 @class DHTocBrowser;
 @class YYTextView;
 
-@interface DHWebViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate>
+@interface DHWebViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate, InterpreterViewDelegate>
 
 @property (assign) IBOutlet UIWebView *webView;
 @property (strong) UIBarButtonItem *backButton;
@@ -58,6 +59,7 @@
 @property (assign) CGPoint webViewOffset;
 @property (assign) BOOL canTranslate;
 @property (nonatomic, strong) YYTextView *actionTextView;
+@property (nonatomic, strong) InterpreterView *interpreterView;
 
 + (instancetype)sharedWebViewController;
 - (void)loadURL:(NSString *)urlString;
