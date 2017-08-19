@@ -144,7 +144,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DHBrowserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(self.isLoading || self.isEmpty) ? @"DHLoadingCell" : @"DHBrowserCell" forIndexPath:indexPath];
+    NSString *identifier = (self.isLoading || self.isEmpty) ? @"DHLoadingCell" : @"DHBrowserCell";
+    DHBrowserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     if((self.isLoading || self.isEmpty) && indexPath.row == 2)
     {
