@@ -437,6 +437,8 @@
 		57FAD0481F48176400BCF5DA /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD0321F48176300BCF5DA /* ViewController+MASAdditions.m */; };
 		57FAD04B1F4817E400BCF5DA /* UIWebView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD04A1F4817E400BCF5DA /* UIWebView+Category.m */; };
 		57FAD04C1F4817E400BCF5DA /* UIWebView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD04A1F4817E400BCF5DA /* UIWebView+Category.m */; };
+		57FAD0531F48353100BCF5DA /* UITextView+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD0521F48353100BCF5DA /* UITextView+Method.m */; };
+		57FAD0541F48353100BCF5DA /* UITextView+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD0521F48353100BCF5DA /* UITextView+Method.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -841,6 +843,8 @@
 		57FAD0321F48176300BCF5DA /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		57FAD0491F4817E400BCF5DA /* UIWebView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Category.h"; sourceTree = "<group>"; };
 		57FAD04A1F4817E400BCF5DA /* UIWebView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+Category.m"; sourceTree = "<group>"; };
+		57FAD0511F48353100BCF5DA /* UITextView+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Method.h"; sourceTree = "<group>"; };
+		57FAD0521F48353100BCF5DA /* UITextView+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Method.m"; sourceTree = "<group>"; };
 		642921D57BB2F4B0450331EC /* Pods-Dash-Dash App Store.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash-Dash App Store.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash-Dash App Store/Pods-Dash-Dash App Store.debug.xcconfig"; sourceTree = "<group>"; };
 		6BB3997912C96D08897BF444 /* Pods-Dash-Dash App Store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash-Dash App Store.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash-Dash App Store/Pods-Dash-Dash App Store.release.xcconfig"; sourceTree = "<group>"; };
 		7E45E2662CBB7671D0D844A3 /* Pods-Dash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash/Pods-Dash.release.xcconfig"; sourceTree = "<group>"; };
@@ -1671,6 +1675,8 @@
 				57FAD0091F48162A00BCF5DA /* InterpreterViewHeaderView.m */,
 				57FAD00A1F48162A00BCF5DA /* InterpreterViewLocal.h */,
 				57FAD00B1F48162A00BCF5DA /* InterpreterViewLocal.m */,
+				57FAD0511F48353100BCF5DA /* UITextView+Method.h */,
+				57FAD0521F48353100BCF5DA /* UITextView+Method.m */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -2033,6 +2039,7 @@
 				43AB65421ED19D2F00A6EC18 /* FMDatabaseAdditions.m in Sources */,
 				57FACFE91F48059C00BCF5DA /* YYTextView.m in Sources */,
 				43AB65431ED19D2F00A6EC18 /* DHRepoTableView.m in Sources */,
+				57FAD0541F48353100BCF5DA /* UITextView+Method.m in Sources */,
 				57FACF9F1F48059C00BCF5DA /* YYDiskCache.m in Sources */,
 				57FACFC51F48059C00BCF5DA /* YYTextDebugOption.m in Sources */,
 				57FACF871F48059C00BCF5DA /* UIColor+YYAdd.m in Sources */,
@@ -2214,6 +2221,7 @@
 				4303A3BE19C6584F00A7CD85 /* FMDatabaseAdditions.m in Sources */,
 				57FACFE81F48059C00BCF5DA /* YYTextView.m in Sources */,
 				436DF78019FFA926008814F8 /* DHRepoTableView.m in Sources */,
+				57FAD0531F48353100BCF5DA /* UITextView+Method.m in Sources */,
 				57FACF9E1F48059C00BCF5DA /* YYDiskCache.m in Sources */,
 				57FACFC41F48059C00BCF5DA /* YYTextDebugOption.m in Sources */,
 				57FACF861F48059C00BCF5DA /* UIColor+YYAdd.m in Sources */,

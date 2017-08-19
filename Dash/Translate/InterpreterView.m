@@ -26,8 +26,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.interpreterViewLocal];
         [self addSubview:self.headerView];
+        [self addSubview:self.interpreterViewLocal];
         
         [self addConstraintsToSubviews];
         [self addGestureRecognizerToHeaderView];
@@ -42,7 +42,7 @@
     if ([UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:text]) {
         [self.interpreterViewLocal interpretWithText:text];
     } else {
-        [self.interpreterViewLocal interpretWithText:@"unknown"];
+        [self.interpreterViewLocal showUnknownText];
     }
 }
 
@@ -64,7 +64,7 @@
 
 - (void)addConstraintsToSubviews {
     [self.headerView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(100.0);
+        make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.height.equalTo(@(44));
         make.top.equalTo(self.mas_top);
@@ -73,7 +73,7 @@
     [self.interpreterViewLocal mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.headerView.mas_top);
+        make.top.equalTo(self.headerView.mas_bottom);
         make.bottom.equalTo(self.mas_bottom);
     }];
 }
@@ -146,7 +146,7 @@
 - (InterpreterViewHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[InterpreterViewHeaderView alloc] init];
-        _headerView.backgroundColor = [UIColor clearColor];//[UIColor colorWithRGB:0x888888];
+        _headerView.backgroundColor = [UIColor colorWithRGB:0x888888];
         [_headerView addCloseButtonEventToTarget:self action:@selector(closeButtonDidTouch:) forControlEvents:UIControlEventTouchUpInside];
     }
     

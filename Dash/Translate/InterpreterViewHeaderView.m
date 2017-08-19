@@ -64,11 +64,9 @@
         make.centerY.equalTo(self.mas_centerY);
         make.width.height.equalTo(@(22));
     }];
-    self.dragImageView.hidden = YES;
     
     [self.closeButton mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@(44));
-        make.width.equalTo(@(60));
+        make.width.height.equalTo(@(44));
         make.right.equalTo(self.mas_right);
         make.centerY.equalTo(self.mas_centerY);
     }];
@@ -93,7 +91,7 @@
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_closeButton setImage:[UIImage imageNamed:@"btn_fenlei_close"] forState:UIControlStateNormal];
+        [_closeButton setImage:[UIImage imageNamed:@"btn_fenlei_close"] forState:UIControlStateNormal];
     }
     
     return _closeButton;

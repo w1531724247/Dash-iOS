@@ -21,12 +21,11 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "DHWebProgressView.h"
 #import "InterpreterView.h"
-
+#import "YYTextView.h"
 
 @class DHTocBrowser;
-@class YYTextView;
 
-@interface DHWebViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate, InterpreterViewDelegate>
+@interface DHWebViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate, YYTextViewDelegate, InterpreterViewDelegate>
 
 @property (assign) IBOutlet UIWebView *webView;
 @property (strong) UIBarButtonItem *backButton;

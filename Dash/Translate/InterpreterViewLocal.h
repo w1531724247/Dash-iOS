@@ -13,5 +13,6 @@
 
 @property (nonatomic, weak) id<InterpreterContentViewProtocol> delegate;
 - (void)interpretWithText:(NSString *)text;
+- (void)showUnknownText;
 
 @end

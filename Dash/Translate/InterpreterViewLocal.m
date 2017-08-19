@@ -11,18 +11,22 @@
 #import "YYKit.h"
 #import <UIKit/UIReferenceLibraryViewController.h>
 #import "UIWebView+Category.h"
+#import "UITextView+Method.h"
+#import "Masonry.h"
 
 @interface InterpreterViewLocal ()
 
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) YYTextView *contentView;
+@property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIReferenceLibraryViewController *reference;
 @property (nonatomic, copy) NSString *currentString;
+@property (nonatomic, assign) BOOL notFirstSet;
 @end
 
 @implementation InterpreterViewLocal
 
 - (void)dealloc {
-    [_webView restoreLoadHTMLStringMethod];
+    [_textView restoreSetAttributeText];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -30,10 +34,10 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        [self.webView hookLoadHTMLStringMethod];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadReferenceHTMLString:) name:@"loadReferenceHTMLString" object:nil];
+        [self.textView hookSetAttributeText];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewSetAttributedText:) name:@"textViewAttributedText" object:nil];
         
-        [self addSubview:self.webView];
+        [self addSubview:self.contentView];
     }
     
     return self;
@@ -42,38 +46,61 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.webView.frame = self.bounds;
-    self.webView.backgroundColor = [UIColor whiteColor];
+    self.contentView.frame = self.bounds;
+    self.contentView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)interpretWithText:(NSString *)text {
+    self.notFirstSet = NO;
     if (self.reference) {
         [self.reference.view removeFromSuperview];
         self.reference = nil;
     }
     self.currentString = text;
     self.reference = [[UIReferenceLibraryViewController alloc] initWithTerm:text];
-
-    [self insertSubview:self.reference.view aboveSubview:self.webView];
+    [self insertSubview:self.reference.view belowSubview:self.contentView];
+    
     if ([self.delegate respondsToSelector:@selector(interpreterSuccessed)]) {
         [self.delegate interpreterSuccessed];
     }
 }
 
-#pragma mark ---- Notification
-- (void)loadReferenceHTMLString:(NSNotification *)notification
-{
+- (void)showUnknownText {
+    [self.contentView setAttributedText:[[NSAttributedString alloc] initWithString:@"没有找到" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20.0], NSForegroundColorAttributeName:[UIColor redColor]}]];
+    if ([self.delegate respondsToSelector:@selector(interpreterFailure)]) {
+        [self.delegate interpreterFailure];
+    }
+}
 
+#pragma mark ---- Notification
+
+- (void)textViewSetAttributedText:(NSNotification *)notification
+{
+    if (self.notFirstSet) {
+        return;
+    }
+    
+    NSDictionary *userInfo = notification.userInfo;
+    NSAttributedString *attributedText = [userInfo valueForKey:@"attributedText"];
+    [self.contentView setAttributedText:attributedText];
+    self.notFirstSet = YES;
 }
 
 #pragma mark ---- getter
-
-- (UIWebView *)webView {
-    if (!_webView) {
-        _webView = [[UIWebView alloc] init];
+- (YYTextView *)contentView {
+    if (!_contentView) {
+        _contentView = [[YYTextView alloc] init];
     }
     
-    return _webView;
+    return _contentView;
+}
+
+- (UITextView *)textView {
+    if (!_textView) {
+        _textView = [[UITextView alloc] init];
+    }
+    
+    return _textView;
 }
 
 @end
