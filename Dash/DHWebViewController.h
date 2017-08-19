@@ -20,6 +20,7 @@
 #import "DHDBResult.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "DHWebProgressView.h"
+#import "YYKit.h"
 
 @class DHTocBrowser;
 
@@ -32,6 +33,7 @@
 //@property (strong) UIBarButtonItem *reloadButton;
 @property (strong) UIBarButtonItem *zoomOutButton;
 @property (strong) UIBarButtonItem *zoomInButton;
+@property (strong) UIBarButtonItem *translateButton;
 @property (strong) DHWebProgressView *progressView;
 @property (strong) DHDBResult *result;
 @property (assign) BOOL ignoreScroll;
@@ -53,6 +55,8 @@
 @property (strong) NSString *urlToLoad;
 @property (assign) BOOL isRestoreScroll;
 @property (assign) CGPoint webViewOffset;
+@property (assign) BOOL canTranslate;
+@property (nonatomic, strong) YYTextView *actionTextView;
 
 + (instancetype)sharedWebViewController;
 - (void)loadURL:(NSString *)urlString;

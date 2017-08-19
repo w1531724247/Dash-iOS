@@ -73,6 +73,9 @@ static id singleton = nil;
     self.forwardButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"forward"] style:UIBarButtonItemStylePlain target:self action:@selector(goForward)];
     self.zoomOutButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoomOut"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomOut)];
     self.zoomInButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoomIn"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomIn)];
+    self.translateButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"translate_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(translate:)];
+    self.canTranslate = NO;
+    
 //    self.stopButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self.webView action:@selector(stopLoading)];
 //    self.reloadButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload)];
     
@@ -119,6 +122,17 @@ static id singleton = nil;
     }
     NSString *js = [[NSString alloc] initWithFormat:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '%@'", [[DHCSS sharedCSS] textSizeAdjust]];
     [self.webView stringByEvaluatingJavaScriptFromString:js];
+}
+
+- (void)translate:(UIBarButtonItem *)aItem {
+    self.canTranslate = !self.canTranslate;
+    if (self.canTranslate) {
+        [self showActionTextView];
+    }
+}
+
+- (void)showActionTextView {
+    
 }
 
 - (void)loadResult:(DHDBResult *)result
