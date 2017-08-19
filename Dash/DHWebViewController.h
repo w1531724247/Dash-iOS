@@ -20,9 +20,10 @@
 #import "DHDBResult.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "DHWebProgressView.h"
-#import "YYKit.h"
+
 
 @class DHTocBrowser;
+@class YYTextView;
 
 @interface DHWebViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate>
 

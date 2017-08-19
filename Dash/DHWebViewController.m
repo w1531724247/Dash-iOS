@@ -30,6 +30,8 @@
 #import "DHTypeBrowser.h"
 #import "DHEntryBrowser.h"
 #import "DHWebView.h"
+#import "YYKit.h"
+#import "NSObject+Multithreading.h"
 
 @implementation DHWebViewController
 
@@ -81,7 +83,7 @@ static id singleton = nil;
     
     [self updateBackForwardButtonState];
     
-    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.translateButton, self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
+    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.translateButton, UIBarButtonWithFixedWidth(3), self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
     [self updateStopReloadButtonState];
     self.didLoadOnce = YES;
 }
@@ -127,12 +129,92 @@ static id singleton = nil;
 - (void)translate:(UIBarButtonItem *)aItem {
     self.canTranslate = !self.canTranslate;
     if (self.canTranslate) {
-        [self showActionTextView];
+        NSString *htmlString = [self HTMLString:self.webView];
+        [self normalLogicOperation:^{
+            NSData *stringData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
+            NSAttributedString *attributeString = [[NSAttributedString alloc] initWithData:stringData options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+            
+            NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithAttributedString:attributeString];
+            NSString *abString = attString.string;
+            NSInteger length = attString.length;
+            
+            NSMutableArray *rangeArray = [NSMutableArray array];
+            NSUInteger startIndex = 0;
+            NSUInteger endIndex = 0;
+            BOOL skipStartIndex = NO;
+            BOOL skipAdd = NO;
+            for (int index = 0; index < length; index++) {
+                char substring = [abString characterAtIndex:index];
+                if ((substring >= 'a' && substring <= 'z') || (substring >= 'A' && substring <= 'Z')) {
+                    if (!skipStartIndex) {
+                        startIndex = index;
+                        skipStartIndex = YES;
+                        skipAdd = NO;
+                    }
+                } else {
+                    endIndex = index;
+                    skipStartIndex = NO;
+                    if (!skipAdd) {
+                        if (startIndex < endIndex) {
+                            [rangeArray addObject:[NSValue valueWithRange:NSMakeRange(startIndex, endIndex-startIndex)]];
+                            skipAdd = YES;
+                        }
+                    }
+                    
+                }
+            }
+            
+            __weak typeof(self) weakSelf = self;
+            for (NSValue *value in rangeArray) {
+                NSRange subRange = [value rangeValue];
+                NSAttributedString *subString = [attString attributedSubstringFromRange:subRange];
+                UIFont *font = [subString font];
+                CGFloat pointSize = [font pointSize];
+                if (pointSize < 17.0) {
+                    NSMutableDictionary *attributed = [NSMutableDictionary dictionaryWithDictionary:[subString attributes]];
+                    NSString *fontName = [font fontName];
+                    [attributed setValue:[UIFont fontWithName:fontName size:17.0] forKey:NSFontAttributeName];
+                    [attString setAttributes:attributed range:subRange];
+                }
+                
+                [attString setTextHighlightRange:subRange color:nil backgroundColor:[UIColor blueColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+                    NSLog(@"touchText: = %@", [text attributedSubstringFromRange:range].string);
+                }];
+            }
+            
+            [self updateUI:^{
+                [self.translateButton setImage:[UIImage imageNamed:@"translate_selected"]];
+                [self showActionTextViewWithAttrobuteString:attString];
+            }];
+        }];
+    } else {
+        [self.translateButton setImage:[UIImage imageNamed:@"translate_normal"]];
+        [self hiddenActionTextView];
     }
 }
 
-- (void)showActionTextView {
+//获取当前webView的HTML文本
+- (NSString *)HTMLString:(UIWebView *)webView {
+    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.innerHTML"];
     
+    return html;
+}
+
+- (void)showActionTextViewWithAttrobuteString:(NSAttributedString *)attributeString {
+    if (!_actionTextView) {
+        [self.view addSubview:self.actionTextView];
+        CGRect webFrame = self.webView.frame;
+        webFrame.origin.y = 64.0;
+        webFrame.size.height -= 64.0;
+        self.actionTextView.frame = webFrame;
+    } else {
+        self.actionTextView.hidden = NO;
+    }
+    [self.actionTextView setAttributedText:attributeString];
+}
+
+- (void)hiddenActionTextView {
+    self.actionTextView.hidden = YES;
 }
 
 - (void)loadResult:(DHDBResult *)result
@@ -206,7 +288,7 @@ static id singleton = nil;
     {
         self.navigationItem.leftBarButtonItems = nil;
     }
-    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
+    self.toolbarItems = @[self.backButton, UIBarButtonWithFixedWidth(10), self.forwardButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], self.translateButton,  UIBarButtonWithFixedWidth(3), self.zoomOutButton, UIBarButtonWithFixedWidth(3), self.zoomInButton];
     
 }
 
@@ -797,6 +879,10 @@ static id singleton = nil;
 - (YYTextView *)actionTextView {
     if (!_actionTextView) {
         _actionTextView = [[YYTextView alloc] init];
+        _actionTextView.backgroundColor = [UIColor whiteColor];
+        _actionTextView.editable = NO;
+        _actionTextView.selectable = NO;
+        _actionTextView.delegate = self;
     }
     
     return _actionTextView;
