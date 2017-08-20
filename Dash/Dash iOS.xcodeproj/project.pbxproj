@@ -439,6 +439,8 @@
 		57FAD04C1F4817E400BCF5DA /* UIWebView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD04A1F4817E400BCF5DA /* UIWebView+Category.m */; };
 		57FAD0531F48353100BCF5DA /* UITextView+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD0521F48353100BCF5DA /* UITextView+Method.m */; };
 		57FAD0541F48353100BCF5DA /* UITextView+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = 57FAD0521F48353100BCF5DA /* UITextView+Method.m */; };
+		57FAD0591F49244B00BCF5DA /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57FAD0581F49244B00BCF5DA /* View.xib */; };
+		57FAD05A1F49244B00BCF5DA /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57FAD0581F49244B00BCF5DA /* View.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -845,6 +847,7 @@
 		57FAD04A1F4817E400BCF5DA /* UIWebView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+Category.m"; sourceTree = "<group>"; };
 		57FAD0511F48353100BCF5DA /* UITextView+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Method.h"; sourceTree = "<group>"; };
 		57FAD0521F48353100BCF5DA /* UITextView+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Method.m"; sourceTree = "<group>"; };
+		57FAD0581F49244B00BCF5DA /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		642921D57BB2F4B0450331EC /* Pods-Dash-Dash App Store.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash-Dash App Store.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash-Dash App Store/Pods-Dash-Dash App Store.debug.xcconfig"; sourceTree = "<group>"; };
 		6BB3997912C96D08897BF444 /* Pods-Dash-Dash App Store.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash-Dash App Store.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash-Dash App Store/Pods-Dash-Dash App Store.release.xcconfig"; sourceTree = "<group>"; };
 		7E45E2662CBB7671D0D844A3 /* Pods-Dash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dash.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Dash/Pods-Dash.release.xcconfig"; sourceTree = "<group>"; };
@@ -1677,6 +1680,7 @@
 				57FAD00B1F48162A00BCF5DA /* InterpreterViewLocal.m */,
 				57FAD0511F48353100BCF5DA /* UITextView+Method.h */,
 				57FAD0521F48353100BCF5DA /* UITextView+Method.m */,
+				57FAD0581F49244B00BCF5DA /* View.xib */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -1827,6 +1831,7 @@
 				43AB659F1ED19D2F00A6EC18 /* ModuleRuby.png in Resources */,
 				43AB65A01ED19D2F00A6EC18 /* home.html in Resources */,
 				43AB65A11ED19D2F00A6EC18 /* style.css in Resources */,
+				57FAD05A1F49244B00BCF5DA /* View.xib in Resources */,
 				43AB65A21ED19D2F00A6EC18 /* DHBrowserCell.xib in Resources */,
 				43AB65A31ED19D2F00A6EC18 /* hash_change_notifier.js in Resources */,
 				43AB65A41ED19D2F00A6EC18 /* InfoPlist.strings in Resources */,
@@ -1865,6 +1870,7 @@
 				43BB045619ED48BD000FBC0D /* ModuleRuby.png in Resources */,
 				43AC700119E4530400E0DB43 /* home.html in Resources */,
 				437B6F8919EBCBCA003023E8 /* style.css in Resources */,
+				57FAD0591F49244B00BCF5DA /* View.xib in Resources */,
 				437AD41719E26C9500BA0FE4 /* DHBrowserCell.xib in Resources */,
 				43BD91EE1AB31A9E001058C4 /* hash_change_notifier.js in Resources */,
 				43FD2EF019BB8D87007E594D /* InfoPlist.strings in Resources */,

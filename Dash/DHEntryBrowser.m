@@ -20,7 +20,7 @@
 #import "DHDBResult.h"
 #import "DHDocsetManager.h"
 
-static NSString *kDHLoadingCell = @"kDHLoadingCell";
+static NSString *kDHLoadingCell = @"DHLoadingCell";
 static NSString *kDHBrowserCell = @"DHBrowserCell";
 
 @implementation DHEntryBrowser

@@ -21,11 +21,11 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "DHWebProgressView.h"
 #import "InterpreterView.h"
-#import "YYTextView.h"
+#import "YYLabel.h"
 
 @class DHTocBrowser;
 
-@interface DHWebViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate, YYTextViewDelegate, InterpreterViewDelegate>
+@interface DHWebViewController : UIViewController <UISplitViewControllerDelegate, UINavigationControllerDelegate, UIWebViewDelegate, UIScrollViewDelegate, UITextViewDelegate, InterpreterViewDelegate>
 
 @property (assign) IBOutlet UIWebView *webView;
 @property (strong) UIBarButtonItem *backButton;
@@ -57,7 +57,8 @@
 @property (assign) BOOL isRestoreScroll;
 @property (assign) CGPoint webViewOffset;
 @property (assign) BOOL canTranslate;
-@property (nonatomic, strong) YYTextView *actionTextView;
+@property (nonatomic, strong) UIScrollView *actionTextContentView;
+@property (nonatomic, strong) YYLabel *actionTextView;
 @property (nonatomic, strong) InterpreterView *interpreterView;
 
 + (instancetype)sharedWebViewController;

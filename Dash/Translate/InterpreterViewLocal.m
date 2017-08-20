@@ -84,6 +84,7 @@
     NSAttributedString *attributedText = [userInfo valueForKey:@"attributedText"];
     [self.contentView setAttributedText:attributedText];
     self.notFirstSet = YES;
+    [self.contentView scrollToTop];
 }
 
 #pragma mark ---- getter

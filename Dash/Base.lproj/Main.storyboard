@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +28,7 @@
         <scene sceneID="ftd-z8-gfn">
             <objects>
                 <tableViewController storyboardIdentifier="DHNestedBrowser" useStoryboardIdentifierAsRestorationIdentifier="YES" id="On6-fK-Wo0" customClass="DHNestedViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DHNestedBrowserTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="34K-oz-RHA">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="DHNestedBrowserTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="34K-oz-RHA">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -288,7 +288,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" restorationIdentifier="DocsetsSearchBar" id="VJZ-Lp-FAA">
-                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             <connections>
@@ -350,7 +350,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="VJR-eZ-B8V">
-                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             <connections>
@@ -403,7 +403,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" restorationIdentifier="EntriesSearchBar" id="ar1-R2-LNh">
-                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             <connections>
@@ -489,7 +489,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" restorationIdentifier="DownloadSearchBar" placeholder="Find docsets to download" id="ibw-RZ-LKe">
-                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             <connections>
@@ -536,7 +536,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" restorationIdentifier="UserRepoSearchBar" placeholder="Find docsets to download" id="frS-D7-CD1">
-                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             <connections>
@@ -625,7 +625,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="Lzc-4G-LSC">
-                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -702,7 +702,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" restorationIdentifier="CheatRepoSearchBar" placeholder="Find cheat sheets to download" id="0Tx-yl-ZpH">
-                            <rect key="frame" x="0.0" y="64" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             <connections>

@@ -33,6 +33,8 @@
 #import "YYKit.h"
 #import "NSObject+Multithreading.h"
 #import "InterpreterView.h"
+#import <malloc/malloc.h>
+#import "Masonry.h"
 
 #define kWebViewHeight 250.0
 
@@ -132,6 +134,7 @@ static id singleton = nil;
 - (void)translate:(UIBarButtonItem *)aItem {
     self.canTranslate = !self.canTranslate;
     if (self.canTranslate) {
+        __weak typeof(self) weakSelf = self;
         NSString *htmlString = [self HTMLString:self.webView];
         [self normalLogicOperation:^{
             NSData *stringData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
@@ -167,7 +170,6 @@ static id singleton = nil;
                 }
             }
             
-            __weak typeof(self) weakSelf = self;
             for (NSValue *value in rangeArray) {
                 NSRange subRange = [value rangeValue];
                 NSAttributedString *subString = [attString attributedSubstringFromRange:subRange];
@@ -175,8 +177,8 @@ static id singleton = nil;
                 CGFloat pointSize = [font pointSize];
                 if (pointSize < 17.0) {
                     NSMutableDictionary *attributed = [NSMutableDictionary dictionaryWithDictionary:[subString attributes]];
-                    NSString *fontName = [font fontName];
-                    [attributed setValue:[UIFont fontWithName:fontName size:17.0] forKey:NSFontAttributeName];
+//                    NSArray *fonts = [UIFont fontNamesForFamilyName:@"PingFang SC"];
+                    [attributed setValue:[UIFont fontWithName:@"PingFangSC-Regular" size:20.0] forKey:NSFontAttributeName];
                     [attString setAttributes:attributed range:subRange];
                 }
                 
@@ -185,9 +187,10 @@ static id singleton = nil;
                 }];
             }
             
-            [self updateUI:^{
-                [self.translateButton setImage:[UIImage imageNamed:@"translate_selected"]];
-                [self showActionTextViewWithAttrobuteString:attString];
+            [weakSelf updateUI:^{
+                [weakSelf.translateButton setImage:[UIImage imageNamed:@"translate_selected"]];
+                [weakSelf showActionTextViewWithAttrobuteString:attString];
+                NSLog(@"Size of : %zd", malloc_size((__bridge const void *) weakSelf.actionTextView));
             }];
         }];
     } else {
@@ -205,28 +208,36 @@ static id singleton = nil;
 
 - (void)showActionTextViewWithAttrobuteString:(NSAttributedString *)attributeString {
     if (!_actionTextView) {
-        [self.view addSubview:self.actionTextView];
+        [self.actionTextContentView addSubview:self.actionTextView];
+        [self.view addSubview:self.actionTextContentView];
         CGRect webFrame = self.webView.frame;
         webFrame.origin.y = 64.0;
         webFrame.size.height -= 64.0;
-        self.actionTextView.frame = webFrame;
+        self.actionTextContentView.frame = webFrame;
     } else {
-        self.actionTextView.hidden = NO;
+        self.actionTextContentView.hidden = NO;
     }
+    
+    self.actionTextView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.webView.frame) - 20.0, CGRectGetHeight(self.webView.frame));
     [self.actionTextView setAttributedText:attributeString];
+    CGSize textSize = [self.actionTextView sizeThatFits:CGSizeMake(CGRectGetWidth(self.webView.frame) - 20.0, MAXFLOAT)];
+    self.actionTextView.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.webView.frame), textSize.height);
+    self.actionTextContentView.contentSize = CGSizeMake(self.actionTextView.frame.size.width, self.actionTextView.frame.size.height);
+    
 }
 
 - (void)hiddenActionTextView {
-    self.actionTextView.hidden = YES;
+    self.actionTextContentView.hidden = YES;
 }
 
 -  (void)showInterpreterViewWithText:(NSString *)text {
+    __weak typeof(self) weakSelf = self;
     [self updateUI:^{
         if (!_interpreterView) {
-            [self hiddenInterpreterView];
+            [weakSelf hiddenInterpreterView];
         }
         
-        [self.interpreterView startLoadingAnimation];
+        [weakSelf.interpreterView startLoadingAnimation];
         
         CGFloat interpreterViewX = 0.0;
         CGFloat interpreterViewY = CGRectGetHeight(self.view.frame) - kWebViewHeight;
@@ -234,9 +245,9 @@ static id singleton = nil;
         CGFloat interpreterViewH = kWebViewHeight;
         CGRect frame = CGRectMake(interpreterViewX, interpreterViewY, interpreterViewW, interpreterViewH);
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.interpreterView.frame = frame;
+            weakSelf.interpreterView.frame = frame;
         } completion:^(BOOL finished) {
-            [self.interpreterView interpretWithText:text];
+            [weakSelf.interpreterView interpretWithText:text];
         }];
     }];
 }
@@ -923,16 +934,28 @@ static id singleton = nil;
     
 }
 
-- (YYTextView *)actionTextView {
+- (YYLabel *)actionTextView {
     if (!_actionTextView) {
-        _actionTextView = [[YYTextView alloc] init];
+        _actionTextView = [[YYLabel alloc] init];
         _actionTextView.backgroundColor = [UIColor whiteColor];
-        _actionTextView.editable = NO;
-        _actionTextView.selectable = NO;
-        _actionTextView.delegate = self;
+        _actionTextView.numberOfLines = 0;
+
+//        _actionTextView.editable = NO;
+//        _actionTextView.selectable = NO;
+//        _actionTextView.delegate = self;
+//        _actionTextView.pagingEnabled = YES;
     }
     
     return _actionTextView;
+}
+
+- (UIScrollView *)actionTextContentView {
+    if (!_actionTextContentView) {
+        _actionTextContentView = [[UIScrollView alloc] init];
+        _actionTextContentView.delegate = self;
+    }
+    
+    return _actionTextContentView;
 }
 
 - (InterpreterView *)interpreterView {
