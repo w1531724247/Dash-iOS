@@ -91,6 +91,8 @@
 - (YYTextView *)contentView {
     if (!_contentView) {
         _contentView = [[YYTextView alloc] init];
+        _contentView.editable = NO;
+        _contentView.selectable = NO;
     }
     
     return _contentView;
@@ -99,6 +101,7 @@
 - (UITextView *)textView {
     if (!_textView) {
         _textView = [[UITextView alloc] init];
+        _textView.editable = NO;
     }
     
     return _textView;

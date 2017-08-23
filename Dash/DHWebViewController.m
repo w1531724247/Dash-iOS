@@ -167,6 +167,11 @@ static id singleton = nil;
                         }
                     }
                     
+                    NSRange subRange = NSMakeRange(index, 1);
+                    NSAttributedString *subString = [attString attributedSubstringFromRange:subRange];
+                    NSMutableDictionary *attributed = [NSMutableDictionary dictionaryWithDictionary:[subString attributes]];
+                    [attributed setValue:[UIFont fontWithName:@"Menlo-Regular" size:20.0] forKey:NSFontAttributeName];
+                    [attString setAttributes:attributed range:subRange];
                 }
             }
             
