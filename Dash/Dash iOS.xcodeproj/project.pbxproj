@@ -1820,7 +1820,7 @@
 				ORGANIZATIONNAME = Kapeli;
 				TargetAttributes = {
 					43AB65311ED19D2F00A6EC18 = {
-						DevelopmentTeam = JP58VMK957;
+						DevelopmentTeam = EFYJC86RP9;
 					};
 					43FD2EE119BB8D87007E594D = {
 						DevelopmentTeam = 4K5N79DF8Y;
@@ -2455,7 +2455,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bogdan Popescu (JB3QRP5DC5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = JP58VMK957;
+				DEVELOPMENT_TEAM = EFYJC86RP9;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2478,7 +2478,7 @@
 					"$(PROJECT_DIR)/Libs/OCGumbo/gumbo",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kapeli.dash.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = "qmtv.com.QMTV-More";
 				PRODUCT_NAME = Dash;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -2496,7 +2496,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bogdan Popescu (JB3QRP5DC5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = JP58VMK957;
+				DEVELOPMENT_TEAM = EFYJC86RP9;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dash-Prefix.pch";
@@ -2518,7 +2518,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Libs/OCGumbo/gumbo",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kapeli.dash.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = "qmtv.com.QMTV-More";
 				PRODUCT_NAME = Dash;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
